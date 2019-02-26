@@ -1,0 +1,10 @@
+Installing MySQL on a Mac:
+
+1. Download and install the .dmg file from https://dev.mysql.com/downloads/mysql/
+	a. REMEMBER THE PASSWORD YOU SET DURING INSTALLATION
+2. Attempt to run "mysql" in the terminal
+3. When that doesn't work, you need to add the binary to your system's PATH:
+	a. Open your ~/.bash_profile with your favorite editor
+	b. Add "export PATH=${PATH}:/usr/local/mysql/bin" to the file
+	c. Source your command line
+4. Run "mysql -u root -p" in the terminal and enter the password you set during installation
