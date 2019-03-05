@@ -9,7 +9,7 @@ CREATE TABLE Books
 		author_lname VARCHAR(100),
 		released_year INT,
 		stock_quantity INT,
-		pages INT,
+		pages INT
 	);
 
 INSERT INTO Books (title, author_fname, author_lname, released_year, stock_quantity, pages)
