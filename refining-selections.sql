@@ -10,9 +10,9 @@ ORDER BY pages DESC
 LIMIT 1;
 
 -- Print summary containing title and year for 3 most recent books
-SELECT CONCAT(title, ' - ', year) AS summary
+SELECT CONCAT(title, ' - ', released_year) AS summary
 FROM Books
-ORDER BY year DESC
+ORDER BY released_year DESC
 LIMIT 3;
 
 -- Find books with a space in the author's last name
@@ -32,6 +32,10 @@ FROM Books
 ORDER BY author_lname, title;
 
 -- DO SOME YELLING!!!
-SELECT CONCAT('MY FAVORITE AUTHOR IS ', UPPER(author_fname), ' ', UPPER(author_lname), '!')
+SELECT CONCAT('MY FAVORITE AUTHOR IS ',
+			  UPPER(author_fname),
+			  ' ',
+			  UPPER(author_lname),
+			  '!')
 FROM Books
 ORDER BY author_lname;
