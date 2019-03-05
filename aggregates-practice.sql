@@ -15,4 +15,19 @@ FROM Books;
 -- Find the average released year for each author
 SELECT author_fname, author_lname, AVG(released_year)
 FROM Books
-GROUP BY author_fname, author_lname;
+GROUP BY author_fname, author_lname
+ORDER BY author_lname, author_fname;
+
+-- Full name of author who wrote longest book
+SELECT author_fname, author_lname, pages
+FROM Books
+ORDER BY pages DESC
+LIMIT 1;
+
+-- Make this weird thing happen
+SELECT released_year AS year,
+       COUNT(*) AS '# books',
+       AVG(pages) AS 'avg pages'
+FROM Books
+GROUP BY year
+ORDER BY year;
