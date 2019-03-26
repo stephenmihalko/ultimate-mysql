@@ -25,7 +25,7 @@ SELECT CURDATE();
 SELECT DAYNAME(NOW()), DAYOFWEEK(NOW());
                                  
 -- Print today's date as mm/dd/yyyy
-SELECT DATE_FORMAT(NOW(), '%m-%d-%Y');
+SELECT DATE_FORMAT(NOW(), '%m/%d/%Y');
                                  
 -- Print the time as <Month name> <ordinal date> at <time>
 SELECT DATE_FORMAT(NOW(), '%M %D at %t');
