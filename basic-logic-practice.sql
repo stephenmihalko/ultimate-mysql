@@ -40,11 +40,12 @@ FROM Books;
 
 -- Get last name and number of books with "book" or "books" actually written out
 SELECT author_fname, author_lname,
-       CONCAT(COUNT(*) AS CT,
+       CONCAT(COUNT(*), ' ',
        CASE
-          WHEN CT = 1 THEN 'book'
+          WHEN COUNT(*) = 1 THEN 'book'
           ELSE 'books'
           END
         )
 FROM Books
-GROUP BY author_fname, author_lname;
+GROUP BY author_fname, author_lname
+ORDER BY author_lname, author_fname;
