@@ -49,10 +49,7 @@ SELECT 	R.first_name,
 		IFNULL(MIN(Rv.rating), 0) AS MIN,
 		IFNULL(MAX(Rv.rating), 0) AS MAX,
 		IFNULL(AVG(Rv.rating), 0) AS AVERAGE,
-		CASE
-			WHEN COUNT(Rv.rating) = 0 THEN 'INACTIVE'
-			ELSE 'ACTIVE'
-		END AS STATUS
+		IF (COUNT(Rv.rating) = 0, 'INACTIVE', 'ACTIVE') AS STATUS
 FROM Reviewers AS R
 	LEFT JOIN Reviews AS Rv
 		ON R.id = Rv.reviewer_id
