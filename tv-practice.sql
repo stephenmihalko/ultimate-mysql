@@ -28,7 +28,7 @@ ORDER BY Rv.last_name ASC, Rv.first_name ASC, S.title ASC;
 -- Query unreviewed series
 SELECT S.title
 FROM Series AS S
-	RIGHT JOIN Reviews AS Rv
+	LEFT JOIN Reviews AS Rv
 		ON S.id = Rv.series_id
 WHERE Rv.rating IS NULL
 ORDER BY S.title ASC;
