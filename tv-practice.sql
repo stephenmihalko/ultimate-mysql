@@ -38,6 +38,7 @@ SELECT S.genre, AVG(R.rating)
 FROM Series AS S
 	JOIN Reviews AS R
 		ON S.id = R.series_id
+GROUP BY S.genre
 ORDER BY S.genre ASC;
 
 -- Query reviewer statistics: first, last, how many reviews,
