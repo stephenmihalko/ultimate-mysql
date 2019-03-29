@@ -16,11 +16,11 @@ CREATE TABLE Series
 CREATE TABLE Reviews
 (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	rating DECIMAL(2, 1)
+	rating DECIMAL(2, 1),
 	series_id INT,
 	reviewer_id INT,
-	FOREIGN KEY(series_id) REFERENCES Series.id,
-	FOREIGN KEY(reviewer_id) REFERENCES Reviewers.id
+	FOREIGN KEY(series_id) REFERENCES Series(id),
+	FOREIGN KEY(reviewer_id) REFERENCES Reviewers(id)
 );
 
 INSERT INTO Series (title, released_year, genre) VALUES
@@ -38,7 +38,7 @@ INSERT INTO Series (title, released_year, genre) VALUES
     ('Pushing Daisies', 2007, 'Comedy'),
     ('Seinfeld', 1989, 'Comedy'),
     ('Stranger Things', 2016, 'Drama');
-	
+
 INSERT INTO reviewers (first_name, last_name) VALUES
     ('Thomas', 'Stoneman'),
     ('Wyatt', 'Skaggs'),
@@ -47,7 +47,7 @@ INSERT INTO reviewers (first_name, last_name) VALUES
     ('Colt', 'Steele'),
     ('Pinkie', 'Petit'),
     ('Marlon', 'Crafford');
- 
+
 INSERT INTO reviews(series_id, reviewer_id, rating) VALUES
     (1,1,8.0),(1,2,7.5),(1,3,8.5),(1,4,7.7),(1,5,8.9),
     (2,1,8.1),(2,4,6.0),(2,3,8.0),(2,6,8.4),(2,5,9.9),
