@@ -14,6 +14,7 @@ CREATE TABLE Papers
 	grade INT,
 	student_id INT,
 	FOREIGN KEY(student_id) REFERENCES Students.id
+	ON DELETE CASCADE
 );
 
 -- Add this data
@@ -35,6 +36,7 @@ INSERT INTO Papers (student_id, title, grade) VALUES
 SELECT first_name, title, grade
 FROM Students JOIN Papers
 	ON Students.id = Papers.student_id;
+ORDER BY grade DESC;
 
 -- Print first name, title, and grade for all students, but do it good
 SELECT first_name, IFNULL(title, 'MISSING'), IFNULL(grade, 0)
@@ -42,20 +44,21 @@ FROM Students LEFT JOIN Papers
 	ON Students.id = Papers.student_id;
 
 -- Print student names and paper averages
-SELECT first_name, IFNULL(AVG(grade), 0)
+SELECT	first_name,
+		IFNULL(AVG(grade), 0) AS average
 FROM Students LEFT JOIN Papers
 	ON Students.id = Papers.student_id
-GROUP BY first_name
-ORDER BY first_name ASC;
+GROUP BY Students.id
+ORDER BY average DESC;
 
 -- Print students names, paper averages, and P/F
 SELECT	first_name,
-		IFNULL(AVG(grade), 0)
+		IFNULL(AVG(grade), 0) AS average
 		CASE
-			WHEN AVG(grade) < 70 THEN 'FAIL'
+			WHEN average < 70 THEN 'FAIL'
 			ELSE 'PASS'
 		END AS Status
 FROM Students LEFT JOIN Papers
 	ON Students.id = Papers.student_id
-GROUP BY first_name
-ORDER BY first_name ASC;
+GROUP BY Students.id
+ORDER BY average DESC;
