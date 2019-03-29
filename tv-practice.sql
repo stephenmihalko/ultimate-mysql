@@ -15,7 +15,7 @@ ORDER BY avg_rtng ASC;
 
 -- Query all reviews with
 -- first_name, last_name, rating, series (becuase I want to)
-SELECT R.first_name, R.last_name, Rv.rating, S.title
+SELECT Rv.first_name, Rv.last_name, R.rating, S.title
 FROM (
 		Reviews AS R
 		JOIN Reviewers AS Rv
@@ -23,7 +23,7 @@ FROM (
 	 )
 	 JOIN Series AS S
 		ON R.series_id = S.id
-ORDER BY R.last_name ASC, R.first_name ASC, S.title ASC;
+ORDER BY Rv.last_name ASC, Rv.first_name ASC, S.title ASC;
 
 -- Query unreviewed series
 SELECT S.title
