@@ -54,3 +54,6 @@ FROM Reviewers AS R
 	LEFT JOIN Reviews AS Rv
 		ON R.id = Rv.reviewer_id
 GROUP BY R.first_name, R.last_name;
+
+-- The 7th challenge is completed by changing
+-- the ORDER BY in challenge 3 to have title first.
