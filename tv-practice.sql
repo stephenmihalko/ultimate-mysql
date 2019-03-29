@@ -6,12 +6,12 @@ FROM Series AS S
 ORDER BY S.title ASC, Rv.rating ASC;
 
 -- Query title (alphabetical) and average rating
-SELECT S.title, AVG(Rv.rating)
+SELECT S.title, AVG(Rv.rating) AS avg_rtng
 FROM Series AS S
 	JOIN Reviews AS Rv
 		ON S.id = Rv.series_id
 GROUP BY S.title
-ORDER BY S.title ASC;
+ORDER BY avg_rtng ASC;
 
 -- Query all reviews with
 -- first_name, last_name, rating, series (becuase I want to)
@@ -32,7 +32,7 @@ FROM Series AS S
 		ON S.id = Rv.series_id
 WHERE Rv.rating IS NULL
 ORDER BY S.title ASC;
-	
+
 -- Query genre and average rating for genre
 SELECT S.genre, AVG(R.rating)
 FROM Series AS S
