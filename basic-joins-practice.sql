@@ -1,7 +1,20 @@
 -- Create a schema with:
 --  Students: id, first_name
 --  Papers: id, title, grade, student_id
+CREATE TABLE Students
+(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	first_name VARCHAR(30)
+);
 
+CREATE TABLE Papers
+(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(100),
+	grade INT,
+	student_id INT,
+	FOREIGN KEY(student_id) REFERENCES Students.id
+);
 
 -- Add this data
 INSERT INTO Students (first_name) VALUES
@@ -19,12 +32,30 @@ INSERT INTO Papers (student_id, title, grade) VALUES
 (4, 'Borges and Magical Realism', 89);
 
 -- Print first name, title, and grade
-
+SELECT first_name, title, grade
+FROM Students JOIN Papers
+	ON Students.id = Papers.student_id;
 
 -- Print first name, title, and grade for all students, but do it good
-
+SELECT first_name, IFNULL(title, 'MISSING'), IFNULL(grade, 0)
+FROM Students LEFT JOIN Papers
+	ON Students.id = Papers.student_id;
 
 -- Print student names and paper averages
-
+SELECT first_name, IFNULL(AVG(grade), 0)
+FROM Students LEFT JOIN Papers
+	ON Students.id = Papers.student_id
+GROUP BY first_name
+ORDER BY first_name ASC;
 
 -- Print students names, paper averages, and P/F
+SELECT	first_name,
+		IFNULL(AVG(grade), 0)
+		CASE
+			WHEN AVG(grade) < 70 THEN 'FAIL'
+			ELSE 'PASS'
+		END AS Status
+FROM Students LEFT JOIN Papers
+	ON Students.id = Papers.student_id
+GROUP BY first_name
+ORDER BY first_name ASC;
