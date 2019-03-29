@@ -45,15 +45,15 @@ ORDER BY S.genre ASC;
 -- min review, max review, avg review, status (active/inactive)
 SELECT 	R.first_name,
 		R.last_name,
-		COUNT(Rv.rating) AS ct,
-		MIN(Rv.rating),
-		MAX(Rv.rating),
-		AVG(Rv.rating),
+		COUNT(Rv.rating) AS COUNT,
+		IFNULL(MIN(Rv.rating), 0) AS MIN,
+		IFNULL(MAX(Rv.rating), 0) AS MAX,
+		IFNULL(AVG(Rv.rating), 0) AS AVERAGE,
 		CASE
-			WHEN ct = 0 THEN 'INACTIVE'
+			WHEN COUNT(Rv.rating) = 0 THEN 'INACTIVE'
 			ELSE 'ACTIVE'
-		END AS status
+		END AS STATUS
 FROM Reviewers AS R
-	JOIN Reviews AS Rv
+	LEFT JOIN Reviews AS Rv
 		ON R.id = Rv.reviewer_id
 GROUP BY R.first_name, R.last_name;
