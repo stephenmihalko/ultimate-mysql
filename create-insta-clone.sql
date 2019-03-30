@@ -47,3 +47,18 @@ CREATE TABLE Follows
   created_at TIMESTAMP DEFAULT NOW(),
   PRIMARY KEY(follower_id, followee_id)
 );
+
+-- Two more tables for tags
+CREATE TABLE Tags
+(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  tag_text VARCHAR(30) UNIQUE NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE Photo_Tags
+(
+  photo_id INT NOT NULL,
+  tag_id INT NOT NULL,
+  PRIMARY KEY(photo_id, tag_id)
+);
