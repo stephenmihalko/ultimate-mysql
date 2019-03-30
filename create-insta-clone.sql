@@ -13,7 +13,7 @@ CREATE TABLE Photos
 (
   id INT AUTO_INCREMENT PRIMARY KEY,
   image_url VARCHAR(30) UNIQUE NOT NULL,
-  user_id NOT NULL,
+  user_id INT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
   FOREIGN KEY(user_id) REFERENCES Users(id)
 );
