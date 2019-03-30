@@ -34,3 +34,20 @@ LIMIT 10;
 -- 5. How many times does the average user post?
 SELECT (SELECT COUNT(*) FROM Photos) /
        (SELECT COUNT(*) FROM Users) AS avg_posts;
+
+-- 6. What are the 5 most commonly used hashtags?
+SELECT T.tag_name, COUNT(*) AS num_tags
+FROM Tags AS T
+INNER JOIN Photo_Tags AS Pt
+  ON T.id = Pt.tag_id
+GROUP BY T.tag_name
+ORDER BY num_tags DESC
+LIMIT 10;
+
+-- 7. Find users who have liked every photo on the site
+SELECT U.username
+FROM Likes AS L
+INNER JOIN Users AS U
+  ON U.id = L.user_id
+GROUP BY user_id
+HAVING COUNT(*) = (SELECT COUNT(*) FROM Photos);
