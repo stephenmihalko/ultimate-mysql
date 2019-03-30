@@ -12,8 +12,20 @@ CREATE TABLE Users
 CREATE TABLE Photos
 (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  url VARCHAR(30) UNIQUE NOT NULL,
+  image_url VARCHAR(30) UNIQUE NOT NULL,
   user_id NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
   FOREIGN KEY(user_id) REFERENCES Users(id)
+);
+
+-- Comments table
+CREATE TABLE Comments
+(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  comment_text VARCHAR(140) NOT NULL,
+  user_id INT NOT NULL,
+  photo_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
+  FOREIGN KEY(user_id) REFERENCES Users(id),
+  FOREIGN KEY(photo_id) REFERENCES Photos(id)
 );
