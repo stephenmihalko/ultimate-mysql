@@ -1,0 +1,1 @@
+-- This allows for creation of an Instagram-like schema.
