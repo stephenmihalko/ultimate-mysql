@@ -38,3 +38,12 @@ CREATE TABLE Likes
   created_at TIMESTAMP DEFAULT NOW(),
   PRIMARY KEY(user_id, photo_id)
 );
+
+-- Followers table
+CREATE TABLE Follows
+(
+  follower_id INT NOT NULL,
+  followee_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
+  PRIMARY KEY(follower_id, followee_id)
+);
