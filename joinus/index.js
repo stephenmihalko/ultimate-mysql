@@ -13,6 +13,13 @@ app.get("/",
   }
 );
 
+app.get("/joke",
+  function(request, response)
+  {
+    response.send("Chickens, hahahaha!");
+  }
+);
+
 // This starts a server for listening
 app.listen(8080,
   function()
