@@ -5,6 +5,9 @@ var mysql = require('mysql');
 // Create the actual app in code
 var app = express();
 
+// Tell it to use EJS for the HTML extension
+app.set("view engine", "ejs");
+
 // Have it connect to the database
 var connection = mysql.createConnection(
 {
@@ -25,7 +28,8 @@ app.get("/",
       {
         if (error) throw error;
         var count = results[0].total;
-        response.send("We have " + count + " users.");
+        // Look for a "views" directory and look for "home.ejs" in that directory.
+	response.render('home');
       }
     );
   }
