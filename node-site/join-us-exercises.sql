@@ -21,3 +21,9 @@ FROM Users
 WHERE email LIKE '%@yahoo.com';
 
 -- 5. Find the total users per email host (gmail, yahoo, hotmail, other)
+-- No need for case statements and complications when you have string extractions!
+SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(email, '@' ,-1), '.', 1) AS host,
+       COUNT(*) AS total
+FROM Users
+GROUP BY host
+ORDER BY total DESC;
