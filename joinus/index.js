@@ -12,6 +12,9 @@ app.set("view engine", "ejs");
 // Parses the email from the post request
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Take whatever is in that /public folder and make it available to javascript
+app.use(express.static(__dirname + "/public"));
+
 // Have it connect to the database
 var connection = mysql.createConnection(
 {
@@ -49,7 +52,7 @@ app.post("/register",
       function(error, result)
       {
 	if (error) throw error;
-	result.redirect("/");
+	response.redirect("/");
       }
     );
   }
