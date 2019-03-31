@@ -9,10 +9,10 @@ var connection = mysql.createConnection({
 });
 
 // 2. Send command to database.
-var q = "SELECT * FROM Users;";
+var q = "SELECT COUNT(*) AS total FROM Users;";
 connection.query(q, function(error, results, fields) {
   if (error) throw error;
-  console.log(results);
+  console.log(results[0].total);
 });
 
 // 3. Close the connection
