@@ -1,4 +1,4 @@
-for (var i = 0; i < 20; i++)
-{
-  console.log("Hello, World!");
-}
+var faker = require("faker");
+
+console.log(faker.internet.email());
+console.log(faker.date.past());
