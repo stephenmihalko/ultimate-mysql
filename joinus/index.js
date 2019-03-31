@@ -29,7 +29,7 @@ app.get("/",
         if (error) throw error;
         var count = results[0].total;
         // Look for a "views" directory and look for "home.ejs" in that directory.
-	response.render('home');
+	response.render('home', {count: count});
       }
     );
   }
