@@ -9,6 +9,11 @@ FROM Users
 WHERE created_at = (SELECT MIN(created_at) FROM Users);
 
 -- 3. Print number of users joined by month
+SELECT MONTHNAME(created_at) AS month,
+       COUNT(*) AS the_count
+FROM Users
+GROUP BY month
+ORDER BY the_count DESC;
 
 -- 4. Count number of users with yahoo emails
 
