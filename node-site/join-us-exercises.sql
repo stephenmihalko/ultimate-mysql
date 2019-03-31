@@ -16,5 +16,8 @@ GROUP BY month
 ORDER BY the_count DESC;
 
 -- 4. Count number of users with yahoo emails
+SELECT COUNT(*) AS yahoo_users
+FROM Users
+WHERE email LIKE '%@yahoo.com';
 
--- 5. Find the total users per email host
+-- 5. Find the total users per email host (gmail, yahoo, hotmail, other)
